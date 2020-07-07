@@ -1,13 +1,13 @@
 #!/bin/bash -x
 isPartTime=1
 isFullTime=2
-MaxHrsInMonth=160
 EmpWagePerHour=20
 numWorkingDays=20
-totalEmpHrs=0
-totalWorkingDays=0
+DailyWage=0
+totalWage=0
 function getWorkHourofEmployee(){
-	case $1 in
+	EmpAttendance=$((RANDOM%3))
+	case $EmpAttendance in
 		$isPartTime)
 			EmpHours=4
 			;;
@@ -19,13 +19,13 @@ function getWorkHourofEmployee(){
 	esac
 	echo $EmpHours
 }
-while [[ $totalEmpHrs -lt $MaxHrsInMonth && $totalWorkingDays -lt $numWorkingDays ]]
-do
-	((totalWorkingDays++))
-	EmpHours="$( getWorkHourofEmployee $((RANDOM%3)) )"
-	totalEmpHrs=$(($totalEmpHrs+$EmpHours))
-	echo $totalEmpHrs
-done
+getWorkHourofEmployee
+EmpAttendance=$((RANDOM%2))
+DailyWage=$(($EmpWagePerHour*$EmpHours))
+totalWage=$(($DailyWage*$numWorkingDays))
+echo "daily wage of employee is:"$DailyWage
+echo "Total wage of employee is:"$totalWage
+
 
 
 
