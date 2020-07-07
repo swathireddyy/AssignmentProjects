@@ -3,6 +3,8 @@ isPartTime=1
 isFullTime=2
 Absent=0
 EmpWagePerHour=20
+numWorkingDays=20
+totalWage=0
 EmpAttendance=$((RANDOM%3))
 case $EmpAttendance in
 	$isPartTime)
@@ -16,4 +18,8 @@ case $EmpAttendance in
 		;;
 esac
 DailyWage=$(($EmpWagePerHour*$EmpHours))
-echo $DailyWage
+echo "Daily wage of the employee is:" $DailyWage
+totalWage=$(($DailyWage*$numWorkingDays))
+echo "Total wage for a month is:" $totalWage
+
+
