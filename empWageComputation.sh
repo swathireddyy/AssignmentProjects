@@ -1,9 +1,19 @@
 #!/bin/bash -x
-
+isPartTime=1
+isFullTime=2
+Absent=0
 EmpWagePerHour=20
-FullDayHour=8
-PartTimeHour=4
-DailyWageFullTime=$(($EmpWagePerHour*$FullDayHour))
-DailyWagePartTime=$(($EmpWagePerHour*$PartTimeHour))
-echo $DailyWageFullTime "is daily wage of full time employee"
-echo $DailyWagePartTime "is daily wage of part time employee"
+EmpAttendance=$((RANDOM%3))
+case $EmpAttendance in
+	$isPartTime)
+		EmpHours=4
+		;;
+	$isFullTime)
+		EmpHours=8
+		;;
+	*)
+		EmpHours=0
+		;;
+esac
+DailyWage=$(($EmpWagePerHour*$EmpHours))
+echo $DailyWage
